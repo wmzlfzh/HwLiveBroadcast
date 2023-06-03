@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制台</title>
+    <link rel="stylesheet" href="{% static 'element-plus/index.css' %}">
+    <script src="{% static 'vue.global.prod.js' %}"></script>
+    <script src="{% static 'element-plus/index.full.min.js' %}"></script>
+    <script src="//unpkg.com/@element-plus/icons-vue"></script>
+</head>
+
+<body>
+{% verbatim %}
+    <div id="main-layout">
+        <el-container>
+          <el-aside width="auto">
+              <el-menu
+                default-active="2"
+                :router="true"
+                class="el-menu-vertical-demo"
+              >
+                  <el-menu-item index="1">
+                      <el-icon><Setting /></el-icon>
+                      <span>直播设置</span>
+                  </el-menu-item>
+                  <el-menu-item index="2">
+                      <el-icon><setting /></el-icon>
+                      <span>用户管理</span>
+                  </el-menu-item>
+                  <el-menu-item index="3">
+                      <el-icon><Remove /></el-icon>
+                      <span>聊天管理</span>
+                  </el-menu-item>
+              </el-menu>
+          </el-aside>
+          <el-container>
+            <el-header>Header</el-header>
+            <el-main>Main</el-main>
+          </el-container>
+        </el-container>
+    </div>
+{% endverbatim %}
+    <script src="{% static 'main/main.js' %}"></script>
+</body>
+
+</html>

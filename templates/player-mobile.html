@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>王老师直播间</title>
+    <link rel="stylesheet" href="{% static 'element-plus/index.css' %}">
+    <link rel="stylesheet" href="{% static 'player/player.css' %}">
+    <script src="{% static 'vue.global.prod.js' %}"></script>
+    <script src="{% static 'element-plus/index.full.min.js' %}"></script>
+    <script src="{% static 'ZegoExpressWebRTC-2.24.5.js' %}"></script>
+    <script src="{% static 'zim-index.js' %}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    {% verbatim %}
+    <div id="anchor-layout" class="anchor-layout">
+        <el-card id="player-video" title="王老师" class="local-video">
+
+        </el-card>
+        <el-card class="local-im">
+              <el-tabs v-model="activeName" class="im-tabs">
+                <el-tab-pane label="聊天信息" name="first">
+                        <div v-for="(item,index) in chatInfo" :index="index" class="text-div">
+                            <el-icon :size="size" :color="color">
+                              <Edit />
+                            </el-icon>
+                            <el-text tag="mark">{{ item.userId }}</el-text>
+                            :&nbsp;&nbsp;<span>{{ item.content }}</span>
+                        </div>
+                </el-tab-pane>
+                <el-tab-pane label="在线用户" name="second">
+                    <el-scrollbar height="550px">
+                        <div v-for="item in online_user" class="text-div">
+                            {{ item.userId }}
+                        </div>
+                    </el-scrollbar>
+                </el-tab-pane>
+              </el-tabs>
+        </el-card>
+        <el-row>
+            <el-col :span="18">
+                <el-input v-model="content" placeholder="说点什么"  class="input-im"/>
+            </el-col>
+            <el-col :span="6">
+                <el-button @click="sendChatFn"  type="success" class="input-button">发送</el-button>
+            </el-col>
+        </el-row>
+        <div id="player-audio" class="player-audio"></div>
+    </div>
+    {% endverbatim %}
+    <script src="{% static 'player/player.js' %}"></script>
+</body>
+</html>

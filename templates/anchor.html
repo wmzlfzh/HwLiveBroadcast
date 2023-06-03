@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主播</title>
+    <link rel="stylesheet" href="{% static 'element-plus/index.css' %}">
+    <link rel="stylesheet" href="{% static 'anchor/anchor.css' %}">
+    <script src="{% static 'vue.global.prod.js' %}"></script>
+    <script src="{% static 'element-plus/index.full.min.js' %}"></script>
+    <script src="{% static 'ZegoExpressWebRTC-2.24.5.js' %}"></script>
+    <script src="{% static 'zim-index.js' %}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="anchor-layout">
+      <el-row>
+        <el-col :span="1">
+        </el-col>
+
+        <el-col :span="15" class="local-video-col">
+            <el-card id="play-video" class="local-video">
+
+            </el-card>
+            <el-card class="local-video-button">
+                <el-row>
+                    <el-col :span="4">
+                        <el-button type="primary" @click="startVideoPlay">视频直播</el-button>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-button type="primary" @click="startVideoAndAudio">打开投屏</el-button>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-button type="primary" @click="stopVideo">关闭投屏</el-button>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-button type="primary" @click="startAudio">开麦克风</el-button>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-button type="primary" @click="stopAudio">关麦克风</el-button>
+                    </el-col>
+                   <el-col :span="4">
+                        <el-button type="primary" @click="stopPlay">关闭直播</el-button>
+                    </el-col>
+                </el-row>
+            </el-card>
+        </el-col>
+{% verbatim %}
+        <el-col :span="7">
+            <el-card class="local-im">
+                  <el-tabs v-model="activeName" class="im-tabs">
+                    <el-tab-pane label="聊天信息" name="first">
+                        <el-scrollbar height="550px"  ref="scrollbarRef">
+                            <div ref="innerRef">
+                                <div v-for="(item,index) in chatInfo" :index="index" class="text-div">
+                                   <el-tag class="ml-2" type="danger" effect="dark">{{ item.userID }}</el-tag>
+                                :&nbsp;&nbsp;<span>{{ item.content }}</span>
+                            </div>
+                            </div>
+                        </el-scrollbar>
+                    </el-tab-pane>
+                    <el-tab-pane label="在线用户" name="second">
+                        <el-scrollbar height="550px">
+                            <div v-for="item in online_user" class="text-div">
+                                {{ item.userID }}
+                            </div>
+                        </el-scrollbar>
+                    </el-tab-pane>
+                  </el-tabs>
+            </el-card>
+            <el-row>
+                <el-col :span="18">
+                    <el-input v-model="content" placeholder="说点什么"  class="input-im"/>
+                </el-col>
+                <el-col :span="6">
+                    <el-button @click="sendImInfo" type="success" class="input-button">发送</el-button>
+                </el-col>
+            </el-row>
+        </el-col>
+
+        <el-col :span="1">
+        </el-col>
+      </el-row>
+        <div id="local-audio">
+        </div>
+    </div>
+    {% endverbatim %}
+    <script src="{% static 'anchor/anchor.js' %}"></script>
+</body>
+</html>

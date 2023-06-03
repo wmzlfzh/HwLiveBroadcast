@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>停播</title>
+    <link rel="stylesheet" href="{% static 'element-plus/index.css' %}">
+    <script src="{% static 'vue.global.prod.js' %}"></script>
+    <script src="{% static 'element-plus/index.full.min.js' %}"></script>
+</head>
+<body>
+<div>
+    开播时间: {{ startTime }}
+</div>
+<div>
+    停播时间: {{ stopTime }}
+</div>
+<div>
+    直播时长: {{ duration }}分
+</div>
+<div>
+    真实在线: {{ realNum }}
+</div>
+<div>
+    虚拟在线: {{ vUserNum }}
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+{% verbatim %}
+    <div id="app">{{ message }}</div>
+{% endverbatim %}
+    <script src="{% static 'js/test.js' %}"></script>
+</body>
+</html>
